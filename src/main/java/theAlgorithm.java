@@ -13,7 +13,7 @@ public class theAlgorithm {
 
     public  static  void main (String args[])
     {
-        //building regular graph
+        //building regular graph,
         Graph<String,Edge> g  = GraphGenrator.genreateGraph(10,10, (float) 0.3);
         //creating weighted graph from the regualr graph ( the sconed arguent is a hash map from E -> Double
         double r = 3;
