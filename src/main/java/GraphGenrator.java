@@ -32,7 +32,7 @@ public class GraphGenrator {
     }
 return graph;
 }
-
+//
 public static boolean getBooleanPossabiltyOf(float dens){
         float rand= randNum.nextFloat();
         return(rand<=dens);
