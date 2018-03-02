@@ -17,7 +17,7 @@ public class GraphGenrator {
 
     List<String> verticxLst = new ArrayList<String>(graph.vertexSet());
 
-  //
+
     for (String v1 : verticxLst) {
         for (String v2 : verticxLst) {
             if(getBooleanPossabiltyOf(dens))
