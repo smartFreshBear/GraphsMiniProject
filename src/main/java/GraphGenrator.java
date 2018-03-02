@@ -8,7 +8,7 @@ import java.util.Random;
 public class GraphGenrator {
 
     private  static Random randNum = new Random();
-    public  static Graph<String,Edge> genreateGraph(int amounthOfVertics, int maxWeight){
+    public  static Graph<String,Edge> genreateGraph(int amounthOfVertics, int maxWeight, float dens){
     Graph<String,Edge> graph  = new SimpleGraph<>((e1, e2) -> (new Edge(e1, e2)));
 
     for (int i = 0; i < amounthOfVertics; i++) {
@@ -20,7 +20,7 @@ public class GraphGenrator {
 
     for (String v1 : verticxLst) {
         for (String v2 : verticxLst) {
-            if(randNum.nextBoolean())
+            if(getBooleanPossabiltyOf(dens))
             {
                 if(!v1.equals(v2)) {
                     graph.addEdge(v1, v2);
@@ -32,4 +32,11 @@ public class GraphGenrator {
     }
 return graph;
 }
+
+public static boolean getBooleanPossabiltyOf(float dens){
+        float rand= randNum.nextFloat();
+        return(rand<=dens);
+
 }
+}
+
