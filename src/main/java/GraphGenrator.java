@@ -27,7 +27,7 @@ public class GraphGenrator {
                     graph.getEdge(v1, v2).setWeight(randNum.nextInt(maxWeight));
                 }
             }
-
+//test
         }
     }
 return graph;
