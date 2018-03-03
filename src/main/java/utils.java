@@ -10,7 +10,7 @@ public class utils {
     }
 
     public static double getWeight(SpanningTreeAlgorithm.SpanningTree<String> mst) {
-        return 0;
+        return mst.getWeight();
     }
 
     public static double getWeight(Graph g) {
@@ -24,11 +24,11 @@ public class utils {
     }
 
     public static double getSize(SpanningTreeAlgorithm.SpanningTree<String> mst) {
-        return 0;
+        return mst.getEdges().size() ;
     }
 
     public static double getSize(Graph g) {
-        return 0;
+        return g.edgeSet().size();
     }
 
     public static double avp(Graph g){
