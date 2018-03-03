@@ -1,11 +1,12 @@
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 
 public class TableExpirementCreator {
 
@@ -24,7 +25,8 @@ public class TableExpirementCreator {
             tableForPrint.put(i,new ArrayList<>());
         }
             try {
-                fileWriter = new FileWriter(nameOfcsvFile);
+                File file = new File(nameOfcsvFile);
+                fileWriter = new FileWriter(nameOfcsvFile,true);
                 printer = new CSVPrinter(fileWriter, CSVFormat.EXCEL);
             } catch (Exception e) {
                 e.printStackTrace();

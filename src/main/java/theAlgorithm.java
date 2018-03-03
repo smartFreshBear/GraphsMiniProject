@@ -13,13 +13,22 @@ public class theAlgorithm {
 
     public  static  void main (String args[])
     {
-        //building regular graph
+     /*   //building regular graph
         Graph<String,Edge> g  = GraphGenrator.genreateGraph(10,10, (float) 0.3);
         //creating weighted graph from the regualr graph ( the sconed arguent is a hash map from E -> Double
         double r = 3;
 
 
-        runAlgorithm(g,r,new ArrayList<> (g.vertexSet()));
+        runAlgorithm(g,r,new ArrayList<> (g.vertexSet()));*/
+
+        TableExpirementCreator tableMaker = new TableExpirementCreator("c:\\test.csv",(short)3,(short)3);
+        tableMaker.writeToFile(0,0,"lets");
+        tableMaker.writeToFile(0,1,"do");
+        tableMaker.writeToFile(0,2,"it");
+        tableMaker.writeToFile(1,0,"ok");
+        tableMaker.writeToFile(1,1,"just");
+        tableMaker.writeToFile(1,2,"it");
+        tableMaker.CreateFile();
     }
 
 
