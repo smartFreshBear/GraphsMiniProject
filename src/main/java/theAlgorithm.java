@@ -2,9 +2,6 @@ import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.SpanningTreeAlgorithm;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.alg.spanning.KruskalMinimumSpanningTree;
-import org.jgrapht.graph.AsWeightedGraph;
-import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.SimpleGraph;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +29,14 @@ public class theAlgorithm {
             int j=0;
             while (t<2 && j<10) {
                 KruskalMinimumSpanningTree MstOfG = new KruskalMinimumSpanningTree(G);
-                SpanningTreeAlgorithm.SpanningTree<String> mst = MstOfG.getSpanningTree();
+                SpanningTreeAlgorithm.SpanningTree<Edge> mst = MstOfG.getSpanningTree();
                 Graph tSpannanOfG = runAlgorithm(G, t, new ArrayList<>(g.vertexSet()));
-                double tMst = utils.calcT(mst);
-                expirenment1a.writeToFile(i, j, String.valueOf(t / tMst));
-                expirenment1b.writeToFile(i, j, String.valueOf(utils.getWeight(tSpannanOfG) / utils.getWeight(mst)) + String.valueOf(utils.getSize(tSpannanOfG) / utils.getSize(mst)));
-                expirenment2a.writeToFile(i, j, String.valueOf(utils.avp(G) / utils.avp(tSpannanOfG)) );
-                expirenment2b.writeToFile(i, j, String.valueOf(utils.getWeight(G) / utils.getWeight(tSpannanOfG)) );
 
+                utils.initVars(G,tSpannanOfG,mst);
+                expirenment1a.writeToFile(i, j, String.valueOf(utils.calcRatioTspannerToTmst()));
+                expirenment1b.writeToFile(i, j, String.valueOf(utils.getWeight(tSpannanOfG) / mst.getWeight())+";" + String.valueOf(utils.getSize(tSpannanOfG) / utils.getSize(mst)));
+                expirenment2a.writeToFile(i, j, String.valueOf(utils.avp()) );
+                expirenment2b.writeToFile(i, j, String.valueOf(utils.getWeight(G) / utils.getWeight(tSpannanOfG)) );
                 j++;
                 t=t+0.2;
             }
@@ -50,7 +47,7 @@ public class theAlgorithm {
     public static Graph<String, Edge> runAlgorithm(Graph<String, Edge> g, double r, List<String> vertixes) {
 
         List<Edge> sortedEdges = getSortedListOfEdges(g.edgeSet());
-        Graph<String, Edge> gtag = getGraphWithNoEdges(vertixes);
+        Graph<String, Edge> gtag = utils.getGraphWithNoEdges(vertixes);
 
 
         for (Edge sortedEdge : sortedEdges) {
@@ -70,13 +67,7 @@ public class theAlgorithm {
         return dij.getPathWeight(source, target);
     }
 
-    private static Graph<String, Edge> getGraphWithNoEdges(List<String> vertixs) {
-        Graph<String, Edge> gAns = new SimpleGraph<>((e1, e2) -> (new Edge(e1, e2)));
-        for (String v : vertixs) {
-            gAns.addVertex(v);
-        }
-        return gAns;
-    }
+
 
     private static List<Edge> getSortedListOfEdges(Set<Edge> edges) {
         List<Edge> ans = new ArrayList<>();
